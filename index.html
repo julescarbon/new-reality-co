@@ -1,24 +1,163 @@
 <!doctype html>
 <html>
 <head>
-<title>New Reality Co.</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>New Reality Co.</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta property="og:title" content="GIANT">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="http://giantofficial.com/img/giant-fb.png">
+  <meta property="og:url" content="http://newreality.co/">
+  <meta property="og:description" content="New Reality ">
+  <meta property="og:site_name" content="Giant">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-html,body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+* {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
-h1 {
-  margin: 0;
-  padding: 20px;
-  font-weight: 300;
-  font-size: 2em;
+body,html {
+	width: 100%; height: 100%;
+	margin: 0; padding: 0;
+	font-family: 'Roboto',sans-serif;
+	color: #fff;
+	overflow: hidden;
+}
+.hero {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3D(-50%, -50%, 0);
+  transform: translate3D(-50%, -50%, 0);
+  text-align: center;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.logo {
+  width: 150px;
+  display: inline-block;
+}
+.movie {
+  width: 135px;
+  height: 80px;
+  background-size: 80% 80%;
+  border-radius: 2px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: inline-block;
+  margin: 20px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  background-color: rgba(0,0,0,0.2);
+}
+.desktop .movie:hover {
+  background-color: rgba(128,128,128,0.9);
+}
+.social a {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  background-size: 80%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(0,0,0,0.2);
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+.desktop .social a:hover {
+  background-color: rgba(128,128,128,0.9);
+}
+.social a.fb {
+  background-image: url(../img/social-facebook.svg);
+}
+.social a.tw {
+  background-image: url(../img/social-twitter.svg);
+  background-size: 70%;
+}
+.social a.insta {
+  background-image: url(../img/social-instagram-outline.svg);
+}
+.social a.email {
+  background-image: url(../img/social-email.svg);
 }
 </style>
 <body>
-<h1>New Reality Co.</h1>
+<div class="hero">
+    <img src="img/new-reality-white.png" class="logo">
+    <br>
+    
+    <a href="http://giantofficial.com/" target="_blank"><div class="movie" style="background-image: url(img/giant-logo.svg);"></div></a>
+    <a href="http://treeofficial.com/" target="_blank"><div class="movie" style="background-image: url(img/tree.png);"></div></a>
+    
+    <div class="social">
+      <a href="https://www.facebook.com/NewRealityCompany/" class="fb" target="_blank"></a>
+      <a href="https://www.instagram.com/newrealityco/" class="insta" target="_blank"></a>
+      <a href="https://twitter.com/NewRealityCo" class="tw" target="_blank"></a>
+      <a href="mailto:info@newreality.co" class="email" target="_blank"></a>
+    </div>
+</div>
 </body>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var is_iphone = (navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i));
+  var is_ipad = (navigator.userAgent.match(/iPad/i));
+  var is_android = (navigator.userAgent.match(/Android/i))
+  var is_firefox = (navigator.userAgent.match(/Firefox/i))
+  var is_mobile = is_iphone || is_android;
+  document.body.classList.add(is_mobile ? "mobile" : "desktop")
+  var canvas = document.createElement("canvas"), ctx = canvas.getContext('2d')
+  document.body.appendChild(canvas)
+  canvas.style.width="100%"
+  canvas.style.height="100%"
+  canvas.style.position="absolute"
+  canvas.style.top="0px"
+  canvas.style.left="0px"
+  canvas.style.zIndex=-1
+  document.body.addEventListener("resize", go)
+  document.body.parentNode.style.backgroundColor="black"
+  ctx.strokeStyle="white"
+  var s = Math.sin, c = Math.cos
+  go()
+  function ri(n){ return Math.random() * n }
+  function rr(a,b){ return (b-a) * Math.random() + a }
+  function go(){
+    var w = canvas.width = window.innerWidth * 2
+    var h = canvas.height = window.innerHeight * 2
+    canvas.style.width = window.innerWidth + "px"
+    canvas.style.height = window.innerHeight + "px"
+    ctx.clearRect(0,0,w,h)
+    var n = Math.sqrt(w*h/8)|0
+    while (n--) {
+      var x = ri(w)
+      var y = ri(h)
+      var r0 = rr(0, 1)
+      var r1 = rr(0, 1)
+      var r2 = rr(0, 1)
+      var t0 = ri(2*Math.PI)
+      var t1 = ri(2*Math.PI)
+      var t2 = ri(2*Math.PI)
+      var x0 = x+c(t0)*r0
+      var y0 = y+s(t0)*r0
+      var x1 = x+c(t1)*r1
+      var y1 = y+s(t1)*r1
+      var x2 = x+c(t2)*r2
+      var y2 = y+s(t2)*r2
+      ctx.beginPath()
+      ctx.moveTo(x,y)
+      ctx.bezierCurveTo(x0,y0,x1,y1,x2,y2)
+      var color = rr(0, 192)|0
+      ctx.strokeStyle="rgb("+color+","+color+","+color+")"
+      ctx.stroke()
+    }
+  }
+})
+</script>
 </html>
